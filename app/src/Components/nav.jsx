@@ -8,15 +8,14 @@ function Nav() {
   const [addTweet, setAddTweet] = useState(getFromLocalstorage());
   const [searchVal, setSearchVal] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
-  const [isNotfound, setIsNotfound] = useState({msg:"",error:false});
+  const [isNotfound, setIsNotfound] = useState({ msg: "", error: false });
 
   function getFromLocalstorage() {
     const initialtweets = JSON.parse(localStorage.getItem("tweets"));
     if (initialtweets) {
       return initialtweets;
     } else {
-        setIsNotfound({ msg: "Make tweet click add form", error: true });
-        return [];
+      return [];
     }
   }
   function formatTime() {
@@ -62,6 +61,7 @@ function Nav() {
 
     console.log(updatedTweets);
     setIsShowForm(false);
+    setIsNotfound({ msg: "", error: false });
   }
 
   function handleSearchClick() {
@@ -100,10 +100,17 @@ function Nav() {
     console.log(filterBySearch);
     setFilteredResults(filterBySearch);
 
-    if (filterBySearch.length === 0) {
+    if (addTweet.length != 0) {
+      if (filterBySearch.length === 0) {
         setIsNotfound({ msg: "Result Not Found", error: true });
-    } else {
+      } else {
         setIsNotfound({ msg: "", error: false });
+      }
+    } else {
+      setIsNotfound({
+        msg: "Make a tweet by clicking the Add Form button",
+        error: true,
+      });
     }
   }, [searchVal]);
 
@@ -153,7 +160,9 @@ function Nav() {
               value={searchVal}
               onChange={(e) => setSearchVal(e.target.value)}
             />
-            {isNotfound.error ? <div className="error">{isNotfound.msg}</div> : null}
+            {isNotfound.error ? (
+              <div className="error">{isNotfound.msg}</div>
+            ) : null}
             <button className="Search-btn" onClick={handleSearchClick}>
               clear
             </button>
