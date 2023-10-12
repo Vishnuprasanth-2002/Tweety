@@ -1,7 +1,6 @@
 body {
   font-family: sans-serif;
 }
-
 h1 {
   text-align: center;
   color: #00a793;
@@ -14,8 +13,14 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-direction: row-reverse;
   border-bottom: 1px solid #00a793;
+}
+@media (max-width: 580px) {
+  .navbar {
+    padding: 10px 20px;
+    flex-direction: column;
+    border-bottom: 1px solid #00a793;
+  }
 }
 .home-btn,
 .addform-btn {
@@ -44,20 +49,37 @@ h1 {
   align-items: center;
   justify-content: end;
 }
-a {
+/* .link a {
   text-decoration: none;
   margin: 10px;
   color: white;
-}
+} */
 .search {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 26px;
+}
+@media (max-width: 550px) {
+  .search {
+    flex-direction: column;
+  }
 }
 .search input {
   border-radius: 6px;
   border: 1px solid gainsboro;
   width: 40%;
   height: 40px;
+}
+@media (max-width: 550px) {
+  .search input {
+    width: 60%;
+  }
+}
+@media (max-width: 440px) {
+  .search input {
+    width: 80%;
+  }
 }
 .search input:focus,
 .row input:focus {
@@ -68,9 +90,9 @@ a {
 .search input::placeholder {
   font-size: 14px;
   color: black;
-  text-align: center;
 }
-.Search-btn {
+.search-btn {
+  height: 30px;
   background: #00a793;
   color: white;
   border: none;
@@ -79,51 +101,70 @@ a {
   margin: 0 8px;
   cursor: pointer;
 }
-.tweet-parent {
-  background-color: #f5f2f2;
-  height: 1000px;
-  position: relative;
+@media (max-width: 550px) {
+  .search-btn {
+    margin: 8px 0px;
+  }
 }
 .tweet-container {
   padding: 110px;
-  margin-top: 100px;
-  /* background-color: rgba(247, 247, 249, 1); */
+  background-color: rgba(247, 247, 249, 1);
   border-radius: 20px;
-  background: url(https://www.mediwavedigital.com/_next/static/media/oruworks.e62439ad.svg);
+  background-image: url(https://www.mediwavedigital.com/_next/static/media/oruworks.e62439ad.svg);
   background-repeat: no-repeat;
   background-position: left 110px top 72px;
-  position: absolute;
-  top: 100px;
+  /* position: absolute;
+  top: 100px; */
+}
+@media (max-width: 1000px) {
+  .tweet-container {
+    padding: 50px;
+  }
+}
+@media (max-width: 550px) {
+  .tweet-container {
+    padding: 20px;
+  }
 }
 .tweet-records {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 25px;
+}
+@media (max-width: 1300px) {
+  .tweet-records {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 750px) {
+  .tweet-records {
+    grid-template-columns: 1fr;
+  }
 }
 .card:nth-child(even) {
   border-left: 14px solid #e50064;
 }
 .card {
-  /* padding: 15px; */
-  margin: 25px;
+  position: relative;
   border-radius: 10px;
   background: white;
-  width: 300px !important;
   border-left: 14px solid #00a793;
-  /* background-color: rgba(247, 247, 249, 1); */
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -4px rgba(0, 0, 0, 0.1);
 }
-.tweet-para {
+.card-bottom {
   width: 100%;
 }
 .tweet-para p {
   padding: 15px 30px;
   font-size: 18px;
   font-weight: 300;
-  width: 200px !important;
+  overflow-wrap: break-word;
 }
 .emoji-head {
+  position: absolute;
+  bottom: 0;
+  width: 93%;
   padding: 4px 10px;
   display: flex;
   justify-content: space-between;
@@ -136,6 +177,7 @@ a {
 .emoji button {
   background: none;
   border: none;
+  cursor: pointer;
 }
 .like {
   border: 1px solid #00a793 !important;
@@ -189,9 +231,7 @@ a {
 }
 form .row input::placeholder {
   color: black;
-  text-align: center;
 }
-
 .form-add {
   width: 50px;
   margin: 10px auto;
@@ -199,15 +239,12 @@ form .row input::placeholder {
 .error {
   color: red;
 }
-.back {
-  margin-top: 25px;
-  border: 1px solid #00a793;
-  padding: 4px 8px;
-  border-radius: 4px;
-  background: white;
+.input-note {
+  font-size: 14px;
+  color: grey;
 }
-.back a {
-  color: #00a793;
+.note-para {
+  font-size: 12px;
 }
 .submit-btn {
   background: #16a085;
@@ -217,55 +254,37 @@ form .row input::placeholder {
   width: 80px;
   cursor: pointer;
 }
-@media only screen and (max-width: 992px) {
-  .tweet-records {
-    display: block;
-  }
-  .card {
-    margin: 25px auto;
-    width: 400px !important;
-  }
+.navigationButtons {
+  width: 80%;
+  height: 40px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  padding-top: 40px;
 }
-@media only screen and (max-width: 768px) {
-  .tweet-container {
-    background: none;
-    padding: 60px;
-  }
-  .search input {
-    width: 80%;
-  }
-  .Search-btn {
-    margin-top: 15px;
-  }
+
+.navigationButtons a {
+  padding: 10px;
+  margin: 8px;
+  border-radius: 5px;
+  border: 1px solid #00a793;
+  color: #00a793;
+  cursor: pointer;
 }
-@media only screen and (max-width: 600px) {
-  .tweet-records {
-    display: block;
-    margin: 7px auto;
-    width: 50px;
-  }
-  .card {
-    margin: 25px auto;
-    width: 300px !important;
-  }
-  .tweet-container {
-    padding: 0px;
-    margin-top: 140px;
-    background: none;
-  }
-  .navbar {
-    padding: 0;
-  }
+
+.navigationButtons a:hover {
+  color: white;
+  background-color: #00a793;
 }
-@media only screen and (max-width: 400px) {
-  .tweet-records {
-    display: block;
-  }
-  .card {
-    margin: 25px auto;
-    width: 215px !important;
-  }
-  .Search-btn {
-    margin-top: 12px;
-  }
+
+.navigationActive a {
+  color: black;
+  background-color: #00a793;
+}
+
+.navigationDisabled a {
+  color: grey;
+  border: 1px solid grey;
+  cursor: not-allowed;
 }

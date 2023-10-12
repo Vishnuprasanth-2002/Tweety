@@ -1,11 +1,23 @@
-import "./App.css";
-import Nav from "./Components/nav";
+import { lazy, Suspense } from "react";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+
+import Home from "./pages/Home";
+const Form = lazy(() => import("./pages/form"));
+
+function Loading() {
+  return <p>Loading ...</p>;
+}
 
 function App() {
   return (
-    <div>
-      <Nav />
-    </div>
+    <Suspense fallback={<Loading />}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Form" element={<Form />} />
+        </Routes>
+      </BrowserRouter>
+    </Suspense>
   );
 }
 
